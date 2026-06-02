@@ -93,7 +93,7 @@ Note this is a first-pass and may change as I do more research
 | Options | Pros | Cons | Outcome |
 | --- | --- | --- | --- |
 | Serverless function | Scale to zero / saves compute / cost-efficient. Good fit for trigger on schedule / ad-hoc (for manual sync). Good fit with free tier requirement. | Cold start latency. Only an issue for an ad-hoc sync triggered on user request | ✅ Preferred approach |
-| PaaS (e.g. Azure App Service) | Relatively little ops overhead. | More appropriate for long-running app. Would need to handle schedule myself. | ❌ Ruled out |
+| PaaS (e.g. Azure App Service) | Relatively little ops overhead. | More appropriate for long-running app. Would need to handle schedule myself. Wasted compute / cost. | ❌ Ruled out |
 | Containerised app | Simple. Familiar workflow. Portable. | Will need to manage triggers / schedule. Wasted compute / cost. Need to manage container runtime and health-checks. Overkill. | ❌ Ruled out |
 | App running on VM | | Ops overhead. Don't need this much control. Wasted compute / cost. Overkill. | ❌ Ruled out |
 
