@@ -74,3 +74,53 @@ Everything beyond this is optional.
 Note this is a first-pass and may change as I do more research
 
 ![High level design](diagrams/high-level-design.svg)
+
+### Explanation of initial design
+
+#### Todoist API
+
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| REST API | Relatively simple. Can query by date. | Requires polling | Good option - prototype and compare |
+| REST API's Sync Endpoint | Designed for syncing data. Supports incremental syncing. Used by Todoist's own app. | Requires polling | Good option - prototype and compare |
+| Webhooks | Event-driven / no polling needed. Can subscribe to relevant events. | More complex setup. Requires a public HTTPS endpoint. Requires use of OAuth flow to use. | Potential future improvement for better consistency and to avoid polling |
+| Python and Node.js SDKs | Simpler - abstraction layer over REST API | Limited to Python and Node | |
+| CLI | | Less apropriate for where this will run | |
+| Agent skills / MCP | | N/A - not using agentic AI | |
+
+#### Synchroniser
+
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| | | | |
+
+#### Database
+
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| | | | |
+
+#### Web UI
+
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| | | | |
+
+#### Backend for UI
+
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| | | | |
+
+#### Authentication service
+
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| | | | |
+
+#### Seed demo data
+
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| | | | |
+
