@@ -84,7 +84,7 @@ Note this is a first-pass and may change as I do more research
 | REST API | Relatively simple. Can query by date. | Requires polling | 🚧 Good option - prototype and compare |
 | REST API's Sync Endpoint | Designed for syncing data. Supports incremental syncing. Used by Todoist's own app. | Requires polling | 🚧  Good option - prototype and compare |
 | Webhooks | Event-driven / no polling needed. Can subscribe to relevant events. | More complex setup. Requires a public HTTPS endpoint. Requires use of OAuth flow to use. | 🔮 Potential future improvement for better consistency and to avoid polling |
-| Python and Node.js SDKs | Simpler - abstraction layer over REST API | Limited to Python and Node | ❌ Ruled out |
+| Python and Node.js SDKs | Simpler - abstraction layer over REST API | Limited to Python and Node. I would prefer to use Golang. | ❌ Ruled out |
 | CLI | | N/A - don't plan to run from shell | ❌ Ruled out |
 | Agent skills / MCP | | N/A - don't plan to use agentic AI | ❌ Ruled out |
 
