@@ -99,7 +99,7 @@ Note: Todoist API rate limits are not a factor due to only supporting one user.
 
 | Options | Pros | Cons | Outcome |
 | --- | --- | --- | --- |
-| Serverless function | Scale to zero / saves compute / cost-efficient. Good fit for trigger on schedule / ad-hoc (for manual sync). Good fit with free tier requirement. | Cold start latency. Only an issue for an ad-hoc sync triggered on user request | ✅ Preferred approach |
+| Serverless function (e.g. Azure Function) | Scale to zero / saves compute / cost-efficient. Good fit for trigger on schedule / ad-hoc (for manual sync). Good fit with free tier requirement. | Cold start latency. Only an issue for an ad-hoc sync triggered on user request | ✅ Preferred approach |
 | PaaS (e.g. Azure App Service) | Relatively little ops overhead. | More appropriate for long-running app. Would need to handle schedule myself. Wasted compute / cost. | ❌ Ruled out |
 | Containerised app | Simple. Familiar workflow. Portable. | Will need to manage triggers / schedule. Wasted compute / cost. Need to manage container runtime and health-checks. Overkill. | ❌ Ruled out |
 | App running on VM | | Ops overhead. Don't need this much control. Wasted compute / cost. Overkill. | ❌ Ruled out |
@@ -123,17 +123,24 @@ Why:
 - Either option would work
 - I have a personal preference for a stricter data model that provides clarity when working with data
 
-#### Database - specific product
+#### Database - specific database
+
+TODO: List Azure options + running something in VM
 
 | Options | Pros | Cons | Outcome |
 | --- | --- | --- | --- |
-| | | | |
+| PostgreSQL | | | |
+| SQLite | | File-system-based - not a great fit with serverless | |
+| Azure SQL (SQL Server) | | | |
+| MySQL / Maria DB | | | |
 
 #### Web UI
 
-| Options | Pros | Cons | Outcome |
-| --- | --- | --- | --- |
-| | | | |
+Ideally:
+
+- Statically served
+- Can separate out JS for DX
+- Fairly light-weight
 
 #### Backend for UI
 
