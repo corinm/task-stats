@@ -71,3 +71,6 @@ Everything beyond this is optional.
 
 ## High level design of a functional system
 
+Note this is a first-pass and may change as I do more research
+
+![High level design](diagrams/high-level-design.svg)
