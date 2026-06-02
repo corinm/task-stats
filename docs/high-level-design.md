@@ -97,7 +97,26 @@ Note this is a first-pass and may change as I do more research
 | Containerised app | Simple. Familiar workflow. Portable. | Will need to manage triggers / schedule. Wasted compute / cost. Need to manage container runtime and health-checks. Overkill. | ❌ Ruled out |
 | App running on VM | | Ops overhead. Don't need this much control. Wasted compute / cost. Overkill. | ❌ Ruled out |
 
-#### Database
+#### Database - SQL vs NoSQL
+
+Specific to this design:
+
+- With a single user there's no complex relations
+- The data structure is known up-front and unlikely to change often
+
+General trade-offs:
+
+- NoSQL would be more flexible and make fast iteration easier
+- SQL generally provides better off-the-shelf tooling for transactions, schemas and migrating schemas over time
+
+Outcome: ✅ SQL
+
+Why:
+
+- Either option would work
+- I have a personal preference for a stricter data model that provides clarity when working with data
+
+#### Database - specific product
 
 | Options | Pros | Cons | Outcome |
 | --- | --- | --- | --- |
