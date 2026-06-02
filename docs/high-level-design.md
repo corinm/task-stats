@@ -88,6 +88,13 @@ Note this is a first-pass and may change as I do more research
 | CLI | | N/A - don't plan to run from shell | ❌ Ruled out |
 | Agent skills / MCP | | N/A - don't plan to use agentic AI | ❌ Ruled out |
 
+Note: Todoist API rate limits are not a factor due to only supporting one user.
+
+> For each user, you can make a maximum of 1000 partial sync requests within a 15 minute period.
+> For each user, you can make a maximum of 100 full sync requests within a 15 minute period.
+
+[Source](https://developer.todoist.com/api/v1/#tag/Request-limits)
+
 #### Synchroniser
 
 | Options | Pros | Cons | Outcome |
