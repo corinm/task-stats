@@ -97,12 +97,12 @@ Note: Todoist API rate limits are not a factor due to only supporting one user.
 
 #### Synchroniser
 
-| Options | Pros | Cons | Outcome |
-| --- | --- | --- | --- |
-| Serverless function (e.g. Azure Function) | Scale to zero / saves compute / cost-efficient. Good fit for trigger on schedule / ad-hoc (for manual sync). Good fit with free tier requirement. | Cold start latency. Only an issue for an ad-hoc sync triggered on user request | ✅ Preferred approach |
-| PaaS (e.g. Azure App Service) | Relatively little ops overhead. | More appropriate for long-running app. Would need to handle schedule myself. Wasted compute / cost. | ❌ Ruled out |
-| Containerised app | Simple. Familiar workflow. Portable. | Will need to manage triggers / schedule. Wasted compute / cost. Need to manage container runtime and health-checks. Overkill. | ❌ Ruled out |
-| App running on VM | | Ops overhead. Don't need this much control. Wasted compute / cost. Overkill. | ❌ Ruled out |
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| Serverless function (e.g. Azure Function) | Yes | Scale to zero / saves compute / cost-efficient. Good fit for trigger on schedule / ad-hoc (for manual sync). Good fit with free tier requirement. | Cold start latency. Only an issue for an ad-hoc sync triggered on user request | ✅ Preferred approach |
+| Azure App Service (PaaS) | Yes | Relatively little ops overhead. | More appropriate for long-running app. Would need to handle schedule myself. Wasted compute / cost. | ❌ Ruled out |
+| Azure Container App | Yes | Simple. Familiar workflow. Portable. | Will need to manage triggers / schedule. Wasted compute / cost. Need to manage container runtime and health-checks. Overkill. | ❌ Ruled out |
+| App running on VM | First 12-months | | Ops overhead. Don't need this much control. Wasted compute / cost. Overkill. | ❌ Ruled out |
 
 #### Database - SQL vs NoSQL
 
@@ -144,19 +144,19 @@ Ideally:
 
 #### Backend for UI
 
-| Options | Pros | Cons | Outcome |
-| --- | --- | --- | --- |
-| | | | |
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| | | | | |
 
 #### Authentication service
 
-| Options | Pros | Cons | Outcome |
-| --- | --- | --- | --- |
-| | | | |
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| | | | | |
 
 #### Seed demo data
 
-| Options | Pros | Cons | Outcome |
-| --- | --- | --- | --- |
-| | | | |
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| | | | | |
 
