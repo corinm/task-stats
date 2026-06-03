@@ -125,14 +125,17 @@ Why:
 
 #### Database - specific database
 
-TODO: List Azure options + running something in VM
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| Azure DB for PostgreSQL | First 12 months | Widely used, good documentation in community. A good default option. | | ❌ Ruled out. |
+| Azure DB for MySQL | First 12 months | | | ❌ Ruled out |
+| Azure SQL Database | Yes | | | ✅ Preferred option - free tier |
+| Azure SQL Managed Instance | First 12 months | | Enterprise grade. Very expensive. | ❌ Ruled out |
 
-| Options | Pros | Cons | Outcome |
-| --- | --- | --- | --- |
-| PostgreSQL | | | |
-| SQLite | | File-system-based - not a great fit with serverless | |
-| Azure SQL (SQL Server) | | | |
-| MySQL / Maria DB | | | |
+Notes:
+
+- I'm ruling out non-Azure cloud offerings for now. Mostly to keep the decision-making simple and to keep the solution within a single cloud environment. I'm also ruling out self-managed databases in containers or VMs due to the ops overhead.
+- At this scale the main differences between the SQL DB options are pricing, community adoption and documentation.
 
 #### Web UI
 
