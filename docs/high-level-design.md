@@ -75,9 +75,9 @@ Note this is a first-pass and may change as I do more research
 
 ![High level design](diagrams/high-level-design.svg)
 
-### Explanation of initial design
+## Explanation of initial design
 
-#### Todoist API
+### Todoist API
 
 | Options | Pros | Cons | Outcome |
 | --- | --- | --- | --- |
@@ -95,7 +95,7 @@ Note: Todoist API rate limits are not a factor due to only supporting one user.
 
 [Source](https://developer.todoist.com/api/v1/#tag/Request-limits)
 
-#### Synchroniser
+### Synchroniser
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
@@ -104,7 +104,7 @@ Note: Todoist API rate limits are not a factor due to only supporting one user.
 | Azure Container App | Yes | Simple. Familiar workflow. Portable. | Will need to manage triggers / schedule. Wasted compute / cost. Need to manage container runtime and health-checks. Overkill. | ❌ Ruled out |
 | App running on VM | First 12-months | | Ops overhead. Don't need this much control. Wasted compute / cost. Overkill. | ❌ Ruled out |
 
-#### Database - SQL vs NoSQL
+### Database - SQL vs NoSQL
 
 Specific to this design:
 
@@ -123,7 +123,7 @@ Why:
 - Either option would work
 - I have a personal preference for a stricter data model that provides clarity when working with data
 
-#### Database - specific database
+### Database - specific database
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
@@ -149,7 +149,7 @@ Notes:
 
 Notes: There are likely many other options available but I want to focus my initial design on the system as a whole and the backend components. I'm therefore choosing to keep this fairly simple and not exhaustively investigate options.
 
-#### Backend for UI
+### Backend for UI
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
@@ -161,7 +161,7 @@ Notes: There are likely many other options available but I want to focus my init
 
 There's a lot of options for this and the UI and it needs further research and prototyping to better understand suitability and trade-offs.
 
-#### Authentication
+### Authentication
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
@@ -171,7 +171,7 @@ There's a lot of options for this and the UI and it needs further research and p
 
 Note: I'm also ruling out third-party auth services due to wanting to stay in the Azure ecosystem for now.
 
-#### Seed demo data - location
+### Seed demo data
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
