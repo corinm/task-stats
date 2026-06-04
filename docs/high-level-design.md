@@ -1,5 +1,31 @@
 # Initial high level design
 
+## Contents
+
+- [Scope](#scope-copied-from-readme)
+- [Functional requirements](#functional-requirements)
+  - [MVP](#mvp)
+  - [Beyond MVP](#beyond-mvp)
+- [Non-functional requirements](#non-functional-requirements)
+  - [CAP / Consistency vs availability](#cap--consistency-vs-availability)
+  - [Scalability](#scalability)
+  - [Traffic patterns / read/write symmetry](#traffic-patterns--readwrite-symmetry)
+  - [Environmental constraints](#environmental-constraints)
+  - [Security and compliance](#security-and-compliance)
+  - [Data durability](#data-durability)
+  - [Latency vs throughput](#latency-vs-throughput)
+- [High level design of a functional system](#high-level-design-of-a-functional-system)
+- [Explanation of initial design](#explanation-of-initial-design)
+  - [Todoist API](#todoist-api)
+  - [Synchroniser](#synchroniser)
+  - [Database - SQL vs NoSQL](#database---sql-vs-nosql)
+  - [Database - specific database](#database---specific-database)
+  - [Web UI](#web-ui)
+  - [Backend for UI](#backend-for-ui)
+  - [Authentication](#authentication)
+  - [Seed demo data](#seed-demo-data)
+- [Things to consider later](#things-to-consider-later)
+
 ## Scope (copied from readme)
 
 This project is done when:
