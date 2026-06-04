@@ -1,5 +1,31 @@
 # Initial high level design
 
+## Contents
+
+- [Scope](#scope-copied-from-readme)
+- [Functional requirements](#functional-requirements)
+  - [MVP](#mvp)
+  - [Beyond MVP](#beyond-mvp)
+- [Non-functional requirements](#non-functional-requirements)
+  - [CAP / Consistency vs availability](#cap--consistency-vs-availability)
+  - [Scalability](#scalability)
+  - [Traffic patterns / read/write symmetry](#traffic-patterns--readwrite-symmetry)
+  - [Environmental constraints](#environmental-constraints)
+  - [Security and compliance](#security-and-compliance)
+  - [Data durability](#data-durability)
+  - [Latency vs throughput](#latency-vs-throughput)
+- [High level design of a functional system](#high-level-design-of-a-functional-system)
+- [Explanation of initial design](#explanation-of-initial-design)
+  - [Todoist API](#todoist-api)
+  - [Synchroniser](#synchroniser)
+  - [Database - SQL vs NoSQL](#database---sql-vs-nosql)
+  - [Database - specific database](#database---specific-database)
+  - [Web UI](#web-ui)
+  - [Backend for UI](#backend-for-ui)
+  - [Authentication](#authentication)
+  - [Seed demo data](#seed-demo-data)
+- [Things to consider later](#things-to-consider-later)
+
 ## Scope (copied from readme)
 
 This project is done when:
@@ -75,9 +101,9 @@ Note this is a first-pass and may change as I do more research
 
 ![High level design](diagrams/high-level-design.svg)
 
-### Explanation of initial design
+## Explanation of initial design
 
-#### Todoist API
+### Todoist API
 
 | Options | Pros | Cons | Outcome |
 | --- | --- | --- | --- |
@@ -95,7 +121,7 @@ Note: Todoist API rate limits are not a factor due to only supporting one user.
 
 [Source](https://developer.todoist.com/api/v1/#tag/Request-limits)
 
-#### Synchroniser
+### Synchroniser
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
@@ -104,7 +130,7 @@ Note: Todoist API rate limits are not a factor due to only supporting one user.
 | Azure Container App | Yes | Simple. Familiar workflow. Portable. | Will need to manage triggers / schedule. Wasted compute / cost. Need to manage container runtime and health-checks. Overkill. | ❌ Ruled out |
 | App running on VM | First 12-months | | Ops overhead. Don't need this much control. Wasted compute / cost. Overkill. | ❌ Ruled out |
 
-#### Database - SQL vs NoSQL
+### Database - SQL vs NoSQL
 
 Specific to this design:
 
@@ -123,7 +149,7 @@ Why:
 - Either option would work
 - I have a personal preference for a stricter data model that provides clarity when working with data
 
-#### Database - specific database
+### Database - specific database
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
@@ -137,18 +163,63 @@ Notes:
 - I'm ruling out non-Azure cloud offerings for now. Mostly to keep the decision-making simple and to keep the solution within a single cloud environment. I'm also ruling out self-managed databases in containers or VMs due to the ops overhead.
 - At this scale the main differences between the SQL DB options are pricing, community adoption and documentation.
 
-#### Web UI
+### Web UI
 
-TBD
+Note: Some options combine UI, backend and authentication i.e. Azure Static Web Apps. I'm currently unsure how best to structure these various options and don't want this document to become too complex. I'm therefore keeping them separate, even though some relate to others.
 
-#### Backend for UI
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| React SPA + TypeScript, statically hosted | Yes | Relatively light-weight. TS support. Off-the-shelf heat maps available. Developer familiarity. | Requires build. Blank screen until JS loads. | ✅ Preferred option |
+| Svelte + TS, statically hosted | Yes | Smaller bundle and faster loading time vs React. TS support. Off-the-shelf heat maps available. | Requires build. Blank screen until JS loads. Learning curve. | ❌ Ruled out |
+| Next.JS SSR in Container | Yes | | Requires Node.js runtime. Overkill | ❌ Ruled out |
+| Plain HTML, CSS, JS statically hosted | Yes | | No type safety. Less developer familiarity. | ❌ Ruled out |
+| HTMX | Yes | | Low familiarity. Involves SSR. | ❌ Ruled out |
 
-TBD
+Notes: There are likely many other options available but I want to focus my initial design on the system as a whole and the backend components. I'm therefore choosing to keep this fairly simple and not exhaustively investigate options.
 
-#### Authentication service
+### Backend for UI
 
-TBD
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| Azure Functions | Yes | Scale to zero / cost-efficient. Consistent with synchroniser choice — same deployment model. | Cold start latency will be user-facing and likely noticeable | 🚧 Uncertain - prototype |
+| Azure App Service | Yes | Designed for long-running web apps. No cold start. | Wasted compute when idle. Limited to 1hr/day compute | 🚧 Uncertain - prototype and compare |
+| Azure Container App | Yes | Good for a long-lived app. Portable. | Need to manage container runtime and health checks. | 🚧 Good option - prototype and compare |
+| Azure Static Web Apps | Yes | Bundles frontend hosting and backend API into one service and deployment. Less infrastructure to manage. Built-in auth / works well with Entra | API is Azure Functions under the hood - cold starts could be annoying for infrequent usage. Less flexible. | 🚧 Uncertain - prototype and compare |
+| App running on VM | First 12 months | Full control | Ops overhead. Overkill. | ❌ Ruled out |
 
-#### Seed demo data
+There's a lot of options for this and the UI and it needs further research and prototyping to better understand suitability and trade-offs.
 
-TBD
+### Authentication
+
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| Microsoft Entra ID or Azure Active Directory | Yes | Uses a robust managed service | Some setup complexity | ✅ Preferred option |
+| Pre-hashed password passed in via env var | N/A | Very simple | Would never scale. Manual ops effort to update it. Not a best practice. | 🛟 Backup option |
+| Custom solution in e.g. Container App + DB | Yes | | Additional complexity and effort. Overkill for a single user. | ❌ Ruled out |
+
+Note: I'm also ruling out third-party auth services due to wanting to stay in the Azure ecosystem for now.
+
+### Seed demo data
+
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| Inline in frontend | N/A | Very simple. No additional infrastructure. No network request needed. | Increases initial load size slightly even when demo data not needed. Requires a frontend deployment to change demo data. | 🚧 Prototype and compare |
+| Statically-hosted in Azure Blob and loaded in by frontend | First 12 months | | Additional network request. Additional artifact to host and manage. | 🚧 Prototype and compare |
+| Served by backend | N/A | Exercises real backend as part of demo. | Adds some complexity. Additional network request and dependency on backend. Mixes fake data with real data. | ❌ Ruled out |
+
+Notes:
+
+- Some pros/cons mirror each other. Where this is the case I've only included them once.
+- Blob storage would be my preferred option if it was permanently free. Since it's not I will prototype and defer the decision.
+
+## Things to consider later
+
+- Error handling / retry strategy for syncing
+- How demo users enter the demo mode
+- Database schema
+- Database storage requirements
+- Database migration strategy
+- Frontend wireframe
+- Backend API design
+- IaC
+- Deployment
