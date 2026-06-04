@@ -19,3 +19,5 @@ This project is done when:
 - Running in Azure with IaC and continuous deployment
 
 Everything beyond this is optional.
+
+See [docs/high-level-design.md](docs/high-level-design.md) for the full design.
