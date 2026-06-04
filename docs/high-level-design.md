@@ -175,3 +175,15 @@ Notes:
 
 - Some pros/cons mirror each other. Where this is the case I've only included them once.
 - Blob storage would be my preferred option if it was permanently free. Since it's not I will prototype and defer the decision.
+
+## Things to consider later
+
+- Error handling / retry strategy for syncing
+- How demo users enter the demo mode
+- Database schema
+- Database storage requirements
+- Database migration strategy
+- Frontend wireframe
+- Backend API design
+- IaC
+- Deployment
