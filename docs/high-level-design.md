@@ -143,7 +143,15 @@ TBD
 
 #### Backend for UI
 
-TBD
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| Azure Functions | Yes | Scale to zero / cost-efficient. Consistent with synchroniser choice — same deployment model. | Cold start latency will be user-facing and likely noticeable | 🚧 Uncertain - prototype |
+| Azure App Service | Yes | Designed for long-running web apps. No cold start. | Wasted compute when idle. Limited to 1hr/day compute | 🚧 Uncertain - prototype and compare |
+| Azure Container App | Yes | Good for a long-lived app. Portable. | Need to manage container runtime and health checks. | 🚧 Good option - prototype and compare |
+| Azure Static Web Apps | Yes | Bundles frontend hosting and backend API into one service and deployment. Less infrastructure to manage. Built-in auth | API is Azure Functions under the hood / cold starts. Less flexible. | 🚧 Uncertain - prototype and compare |
+| App running on VM | First 12 months | Full control | Ops overhead. Overkill. | ❌ Ruled out |
+
+There's a lot of options for this and the UI and it needs further research and prototyping to better understand suitability and trade-offs.
 
 #### Authentication
 
