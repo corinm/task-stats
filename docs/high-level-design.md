@@ -149,14 +149,15 @@ TBD
 
 TBD
 
-#### Seed demo data
+#### Seed demo data - location
 
-| Options | Pros | Cons | Outcome |
-| --- | --- | --- | --- |
-| Inline in frontend | Very simple. No additional infrastructure. No network request needed. | Increases initial load size slightly even when demo data not needed. Requires a frontend deployment to change demo data. | |
-| Statically-hosted and loaded in by frontend | | Additional network request. Additional artifact to host and manage. | ✅ Preferred option - balances complexity with flexibility |
-| Served by backend | Exercises real backend as part of demo. | Adds some complexity. Additional network request and dependency on backend. Mixes fake data mixed with real data. | |
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| Inline in frontend | N/A | Very simple. No additional infrastructure. No network request needed. | Increases initial load size slightly even when demo data not needed. Requires a frontend deployment to change demo data. | 🚧 Prototype and compare |
+| Statically-hosted in Azure Blob and loaded in by frontend | First 12 months | | Additional network request. Additional artifact to host and manage. | 🚧 Prototype and compare |
+| Served by backend | N/A | Exercises real backend as part of demo. | Adds some complexity. Additional network request and dependency on backend. Mixes fake data mixed with real data. | |
 
 Notes:
 
 - Some pros/cons mirror each other. Where this is the case I've only included them once.
+- Blob storage would be my preferred option if it was permanently free. Since it's not I will prototype and defer the decision.
