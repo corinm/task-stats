@@ -137,7 +137,9 @@ Notes:
 - I'm ruling out non-Azure cloud offerings for now. Mostly to keep the decision-making simple and to keep the solution within a single cloud environment. I'm also ruling out self-managed databases in containers or VMs due to the ops overhead.
 - At this scale the main differences between the SQL DB options are pricing, community adoption and documentation.
 
-#### Web UI
+### Web UI
+
+Note: Some options combine UI, backend and authentication i.e. Azure Static Web Apps. I'm currently unsure how best to structure these various options and don't want this document to become too complex. I'm therefore keeping them separate, even though some relate to others.
 
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
@@ -145,7 +147,7 @@ Notes:
 | Svelte + TS, statically hosted | Yes | Smaller bundle and faster loading time vs React. TS support. Off-the-shelf heat maps available. | Requires build. Blank screen until JS loads. Learning curve. | ❌ Ruled out |
 | Next.JS SSR in Container | Yes | | Requires Node.js runtime. Overkill | ❌ Ruled out |
 | Plain HTML, CSS, JS statically hosted | Yes | | No type safety. Less developer familiarity. | ❌ Ruled out |
-| HTMX | Yes | | Low familiarity. Cannot be statically hosted. | ❌ Ruled out |
+| HTMX | Yes | | Low familiarity. Involves SSR. | ❌ Ruled out |
 
 Notes: There are likely many other options available but I want to focus my initial design on the system as a whole and the backend components. I'm therefore choosing to keep this fairly simple and not exhaustively investigate options.
 
@@ -156,7 +158,7 @@ Notes: There are likely many other options available but I want to focus my init
 | Azure Functions | Yes | Scale to zero / cost-efficient. Consistent with synchroniser choice — same deployment model. | Cold start latency will be user-facing and likely noticeable | 🚧 Uncertain - prototype |
 | Azure App Service | Yes | Designed for long-running web apps. No cold start. | Wasted compute when idle. Limited to 1hr/day compute | 🚧 Uncertain - prototype and compare |
 | Azure Container App | Yes | Good for a long-lived app. Portable. | Need to manage container runtime and health checks. | 🚧 Good option - prototype and compare |
-| Azure Static Web Apps | Yes | Bundles frontend hosting and backend API into one service and deployment. Less infrastructure to manage. Built-in auth | API is Azure Functions under the hood / cold starts. Less flexible. | 🚧 Uncertain - prototype and compare |
+| Azure Static Web Apps | Yes | Bundles frontend hosting and backend API into one service and deployment. Less infrastructure to manage. Built-in auth / works well with Entra | API is Azure Functions under the hood - cold starts could be annoying for infrequent usage. Less flexible. | 🚧 Uncertain - prototype and compare |
 | App running on VM | First 12 months | Full control | Ops overhead. Overkill. | ❌ Ruled out |
 
 There's a lot of options for this and the UI and it needs further research and prototyping to better understand suitability and trade-offs.
