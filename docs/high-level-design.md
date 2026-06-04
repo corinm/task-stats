@@ -139,7 +139,15 @@ Notes:
 
 #### Web UI
 
-TBD
+| Options | In Azure free tier? | Pros | Cons | Outcome |
+| --- | --- | --- | --- | --- |
+| React SPA + TypeScript, statically hosted | Yes | Relatively light-weight. TS support. Off-the-shelf heat maps available. Developer familiarity. | Requires build. Blank screen until JS loads. | ✅ Preferred option |
+| Svelte + TS, statically hosted | Yes | Smaller bundle and faster loading time vs React. TS support. Off-the-shelf heat maps available. | Requires build. Blank screen until JS loads. Learning curve. | ❌ Ruled out |
+| Next.JS SSR in Container | Yes | | Requires Node.js runtime. Overkill | ❌ Ruled out |
+| Plain HTML, CSS, JS statically hosted | Yes | | No type safety. Less developer familiarity. | ❌ Ruled out |
+| HTMX | Yes | | Low familiarity. Cannot be statically hosted. | ❌ Ruled out |
+
+Notes: There are likely many other options available but I want to focus my initial design on the system as a whole and the backend components. I'm therefore choosing to keep this fairly simple and not exhaustively investigate options.
 
 #### Backend for UI
 
