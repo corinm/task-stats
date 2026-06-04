@@ -139,27 +139,16 @@ Notes:
 
 #### Web UI
 
-Ideally:
-
-- Statically served
-- Can separate out JS for DX
-- Fairly light-weight
+TBD
 
 #### Backend for UI
 
-| Options | In Azure free tier? | Pros | Cons | Outcome |
-| --- | --- | --- | --- | --- |
-| | | | | |
+TBD
 
 #### Authentication service
 
-| Options | In Azure free tier? | Pros | Cons | Outcome |
-| --- | --- | --- | --- | --- |
-| | | | | |
+TBD
 
 #### Seed demo data
 
-| Options | In Azure free tier? | Pros | Cons | Outcome |
-| --- | --- | --- | --- | --- |
-| | | | | |
-
+TBD
