@@ -151,4 +151,12 @@ TBD
 
 #### Seed demo data
 
-TBD
+| Options | Pros | Cons | Outcome |
+| --- | --- | --- | --- |
+| Inline in frontend | Very simple. No additional infrastructure. No network request needed. | Increases initial load size slightly even when demo data not needed. Requires a frontend deployment to change demo data. | |
+| Statically-hosted and loaded in by frontend | | Additional network request. Additional artifact to host and manage. | ✅ Preferred option - balances complexity with flexibility |
+| Served by backend | Exercises real backend as part of demo. | Adds some complexity. Additional network request and dependency on backend. Mixes fake data mixed with real data. | |
+
+Notes:
+
+- Some pros/cons mirror each other. Where this is the case I've only included them once.
