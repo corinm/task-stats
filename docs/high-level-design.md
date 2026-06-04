@@ -168,7 +168,7 @@ There's a lot of options for this and the UI and it needs further research and p
 | Options | In Azure free tier? | Pros | Cons | Outcome |
 | --- | --- | --- | --- | --- |
 | Microsoft Entra ID or Azure Active Directory | Yes | Uses a robust managed service | Some setup complexity | ✅ Preferred option |
-| Pre-hashed password passed in via env var | N/A | Very simple | Would never scale. Manual ops effort to update it. Not a best practice. | ❌ Backup option |
+| Pre-hashed password passed in via env var | N/A | Very simple | Would never scale. Manual ops effort to update it. Not a best practice. | 🛟 Backup option |
 | Custom solution in e.g. Container App + DB | Yes | | Additional complexity and effort. Overkill for a single user. | ❌ Ruled out |
 
 Note: I'm also ruling out third-party auth services due to wanting to stay in the Azure ecosystem for now.
